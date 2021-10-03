@@ -4,7 +4,7 @@
     <div
       background-color="transparent"
       color="basil"
-      class="mb-1"
+      class="mb-5 mt-5"
     >
     <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
     <!-- <v-row justify="space-around">
