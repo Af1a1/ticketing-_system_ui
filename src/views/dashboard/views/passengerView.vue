@@ -86,10 +86,14 @@
                     <div>
                         <v-card>
                             <v-container>
-                                <v-img
-                                lazy-src="https://picsum.photos/id/11/10/6"
-                                src="https://picsum.photos/id/11/500/300"
-                                ></v-img>
+                                <!-- <GMapMap
+                                    :center="{lat: 51.093048, lng: 6.842120}"
+                                    :zoom="7"
+                                    map-type-id="terrain"
+                                    style="width: 100vw; height: 900px"
+                                >
+                                </GMapMap> -->
+                                <GoogleMap />
                             </v-container>
                             <v-bottom-navigation >
     <v-btn value="recent">
@@ -115,13 +119,18 @@
 </template>
 <script>
  import { mdiEye, mdiMapMarker, mdiShare } from '@mdi/js'
+ import GoogleMap from '@/components/GoogleMap.vue'
   export default {
+      components:{
+          GoogleMap
+      },
     data: () => ({
     icons: {
         mdiEye,
         mdiMapMarker,
         mdiShare
       },
+      center: {lat: 51.093048, lng: 6.842120},
       valid: false,
       firstname: '',
       lastname: '',
