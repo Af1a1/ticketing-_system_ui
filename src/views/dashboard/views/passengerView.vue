@@ -1,0 +1,136 @@
+<template>
+    <div flat class="mt-5">
+        <v-card-text class="custom-card-text" style="color:white !important;">
+            <v-card-title class="text-h5">
+                Passenger Journey Details View 
+            </v-card-title>
+            <v-row>
+                <v-col cols="6" align-self="center">
+                    <div> 
+                        <v-card>
+                            <v-form v-model="valid">
+                            <v-container>
+                            <v-row>
+                                <v-col
+                                cols="12"
+                                md="12"
+                                >
+                                <v-text-field
+                                    v-model="firstname"
+                                    label="Ticket Number"
+                                ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col
+                                cols="12"
+                                md="12"
+                                >
+                                <v-text-field
+                                    v-model="email"
+                                    label="Date and Time"
+                                    required
+                                ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col
+                                cols="12"
+                                md="6"
+                                >
+                                <v-text-field
+                                    v-model="email"
+                                    label="Departure"
+                                    required
+                                ></v-text-field>
+                                </v-col>
+                                <v-col
+                                cols="12"
+                                md="6"
+                                >
+                                <v-text-field
+                                    v-model="email"
+                                    label="Destination"
+                                    required
+                                ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col
+                                cols="12"
+                                md="6"
+                                >
+                                <v-text-field
+                                    v-model="email"
+                                    label="Jouney Fair"
+                                    required
+                                ></v-text-field>
+                                </v-col>
+                                <v-col
+                                cols="12"
+                                md="6"
+                                >
+                                <v-text-field
+                                    v-model="email"
+                                    label="Fines"
+                                    required
+                                ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            </v-container>
+                            </v-form>
+                        </v-card>
+                    </div>
+                </v-col>
+                <v-col cols="6" align-self="center">
+                    <div>
+                        <v-card>
+                            <v-container>
+                                <v-img
+                                lazy-src="https://picsum.photos/id/11/10/6"
+                                src="https://picsum.photos/id/11/500/300"
+                                ></v-img>
+                            </v-container>
+                            <v-bottom-navigation >
+    <v-btn value="recent">
+      <v-icon>{{icons.mdiEye }}</v-icon>
+    </v-btn>
+
+    <v-btn value="favorites">
+      <v-icon>{{icons.mdiMapMarker}}</v-icon>
+    </v-btn>
+
+    <v-btn value="nearby">
+      <v-icon>{{icons.mdiShare}}</v-icon>
+    </v-btn>
+  </v-bottom-navigation>
+                        </v-card>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-card-text>
+        
+    </div>    
+  
+</template>
+<script>
+ import { mdiEye, mdiMapMarker, mdiShare } from '@mdi/js'
+  export default {
+    data: () => ({
+    icons: {
+        mdiEye,
+        mdiMapMarker,
+        mdiShare
+      },
+      valid: false,
+      firstname: '',
+      lastname: '',
+      email: '',
+    }),
+  }
+</script>
+<style>
+.custom-card-text{
+    background: #3f51b5
+}
+</style>

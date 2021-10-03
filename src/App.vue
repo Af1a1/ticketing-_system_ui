@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <Navbar />
       <router-view />
     </v-main>
   </v-app>
@@ -8,8 +9,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
+import Navbar from '@/views/dashboard/Navbar.vue'
 export default Vue.extend({
+  components:{
+    Navbar
+  },
   name: 'App',
 
   data: () => ({
@@ -17,3 +21,8 @@ export default Vue.extend({
   }),
 });
 </script>
+<style>
+body{
+  background: #ebf5fb !important;
+}
+</style>

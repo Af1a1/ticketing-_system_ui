@@ -2,7 +2,9 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
-import HelloWorld from '../components/HelloWorld.vue';
+import Dashboard from '../views/dashboard/index';
+import InspectorView from '../views/dashboard/views/inspectorView';
+import PassengerView from '../views/dashboard/views/passengerView';
 import auth from '../auth';
 
 Vue.use(VueRouter);
@@ -21,8 +23,17 @@ const routes: Array<RouteConfig> = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: HelloWorld,
-    meta: { requiresAuth: true },
+    component: Dashboard,
+  },
+  {
+    path: '/dashboard/:id/inpector',
+    name: 'dashboard',
+    component: InspectorView,
+  },
+  {
+    path: '/dashboard/:id/passenger',
+    name: 'dashboard',
+    component: PassengerView,
   },
 ];
 
