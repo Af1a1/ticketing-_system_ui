@@ -16,13 +16,11 @@ export default Vue.extend({
   },
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return{
+      isLoggedIn: false,
+    }
+  },
 });
 </script>
-<style>
-body{
-  background: #ebf5fb !important;
-}
-</style>
+

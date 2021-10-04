@@ -7,11 +7,12 @@ import auth from '../auth';
 export default {
   get(route: string) {
     const url = 'http://localhost:5000' + route;
-    const options = {
-      headers: { Authorization: auth.getAuthToken() },
-    };
+    // const options = {
+    //   headers: { Authorization: auth.getAuthToken() },
+    // };
 
-    return axios.get(url, options);
+    //return axios.get(url, options);
+    return axios.get(url);
   },
   post(route: string, payload: any) {
     const url = 'http://localhost:5000' + route;

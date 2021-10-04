@@ -7,11 +7,10 @@ declare const window: any;
 export default {
   TOKEN_KEY: AUTH_KEY,
   authenticated: false,
-  user: {
-    name: '',
-    token: '',
-    userType: null,
-    id: null,
+  passenger: {
+    id:null,
+    name: null,
+    nic: null,
   },
 
   login(credentials: any) {
@@ -29,22 +28,24 @@ export default {
   },
 
   setAuth(data: any): void {
-    this.user.token = data.token;
-    this.user.name = data.user.name;
-    this.user.userType = data.user.role;
-    this.user.id = data.user.id;
+    console.log("🚀 ~ file: index.ts ~ line 31 ~ setAuth ~ data", data)
+    this.passenger.name = data.data.passenger.name;
+    this.passenger.nic = data.data.passenger.nic;
+    this.passenger.id = data.data.passenger.id;
 
-    window.localStorage.setItem(AUTH_KEY, JSON.stringify(this.user));
+    window.localStorage.setItem('name', this.passenger.name);
+    window.localStorage.setItem('nic', this.passenger.nic);
+    window.localStorage.setItem('id', this.passenger.id);
+    window.localStorage.setItem('isLoggedIn', true);
+    
   },
   updateAuth(data: any): void {
     if (!data) {
       return;
     }
-
-    this.user.token = data.token;
-    this.user.userType = data.userType;
-    this.user.id = data.id;
-    this.user.name = data.name;
+    this.passenger.name = data.passenger.name;
+    this.passenger.nic = data.passenger.nic;
+    this.passenger.id = data.passenger.id;
   },
   checkAuth(): boolean {
     const authJson = window.localStorage.getItem(AUTH_KEY) as any;
@@ -57,7 +58,7 @@ export default {
     }
     return this.authenticated;
   },
-  getAuthToken(): string {
-    return 'Bearer ' + this.user.token;
-  },
+  // getAuthToken(): string {
+  //   return 'Bearer ' + this.passenger.token;
+  // },
 };

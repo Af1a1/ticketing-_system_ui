@@ -27,6 +27,8 @@
   
 </template>
 <script>
+import RestAdapter from '@/restAdapter/index'
+
   export default {
     data () {
       return {
@@ -133,7 +135,14 @@
     methods:{
       pushView(){
         this.$router.push(`/dashboard/${1}/inpector`)
+      },
+      async getAllInspectorDetails(){
+        const Response = await RestAdapter.get('/api/v1/account')
+        console.log("🚀 ~ file: inspectorDetails.vue ~ line 141 ~ getAllInspectorDetails ~ Response", Response)
       }
-    }
+    },
+    mounted() {
+      this.getAllInspectorDetails()
+    },
   }
 </script>

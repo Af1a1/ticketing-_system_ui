@@ -24,6 +24,7 @@
   
 </template>
 <script>
+import RestAdapter from '@/restAdapter/index'
   export default {
     data () {
       return {
@@ -129,8 +130,15 @@
     methods:{
       pushView(){
         this.$router.push(`/dashboard/${1}/passenger`)
+      },
+      async getAllPassengerDetails(){
+        const Response = await RestAdapter.get('/api/v1/account')
+        console.log("🚀 ~ file: passengerDetails.vue ~ line 136 ~ getPassengerDetails ~ Response", Response)
       }
-    }
+    },
+    mounted() {
+      this.getAllPassengerDetails()
+    },
   }
 </script>
 <style scoped>
