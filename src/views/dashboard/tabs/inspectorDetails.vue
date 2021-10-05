@@ -35,7 +35,6 @@ import RestAdapter from '@/restAdapter/index'
         search:'',
         headers: [
           {
-            text: 'Dessert (100g serving)',
             align: 'start',
             sortable: false,
             value: 'name',
@@ -49,7 +48,6 @@ import RestAdapter from '@/restAdapter/index'
         ],
         desserts: [
           {
-            name: 'Frozen Yogurt',
             calories: 159,
             fat: 6.0,
             carbs: 24,
@@ -58,7 +56,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Ice cream sandwich',
             calories: 237,
             fat: 9.0,
             carbs: 37,
@@ -67,7 +64,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Eclair',
             calories: 262,
             fat: 16.0,
             carbs: 23,
@@ -76,7 +72,6 @@ import RestAdapter from '@/restAdapter/index'
             // action:'',
           },
           {
-            name: 'Cupcake',
             calories: 305,
             fat: 3.7,
             carbs: 67,
@@ -85,7 +80,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Gingerbread',
             calories: 356,
             fat: 16.0,
             carbs: 49,
@@ -94,7 +88,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Jelly bean',
             calories: 375,
             fat: 0.0,
             carbs: 94,
@@ -103,7 +96,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Lollipop',
             calories: 392,
             fat: 0.2,
             carbs: 98,
@@ -112,7 +104,6 @@ import RestAdapter from '@/restAdapter/index'
             //action:'',
           },
           {
-            name: 'Donut',
             calories: 452,
             fat: 25.0,
             carbs: 51,
@@ -121,7 +112,6 @@ import RestAdapter from '@/restAdapter/index'
             // action:'',
           },
           {
-            name: 'KitKat',
             calories: 518,
             fat: 26.0,
             carbs: 65,
@@ -137,8 +127,20 @@ import RestAdapter from '@/restAdapter/index'
         this.$router.push(`/dashboard/${1}/inpector`)
       },
       async getAllInspectorDetails(){
-        const Response = await RestAdapter.get('/api/v1/account')
-        console.log("🚀 ~ file: inspectorDetails.vue ~ line 141 ~ getAllInspectorDetails ~ Response", Response)
+        try{
+          const Response = await RestAdapter.get('/api/v1/inspector')
+          console.log("🚀 ~ file: inspectorDetails.vue ~ line 141 ~ getAllInspectorDetails ~ Response", Response)
+          const inspector = Response.data.data.map((x)=>({
+            id: x.id,
+            date: x.date,
+            departure: x.departure,
+            destination: x.destination,
+            fair: x.fair,
+            fines: x.fines,
+          }))
+        }catch(error){
+          console.error();
+        }
       }
     },
     mounted() {

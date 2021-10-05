@@ -83,3 +83,27 @@
     </v-col>
   </v-row>
 </template>
+<script>
+import RestAdapter from '@/restAdapter/index'
+export default {
+    data: () => ({
+      user:''
+    }),
+    methods:{
+        async getProfileDetails(id){
+          try{
+            const Response = await RestAdapter.get(`/api/v1/account/${id}`)
+            this.user = Response.data.data.map((x)=>({
+              id: x.id,
+              name: x.name,
+              emai: x.email,
+              employeeId: x.employeeId,
+          }))
+          }catch(error){
+            console.error();
+          }
+          
+        }
+    }
+  }
+</script>

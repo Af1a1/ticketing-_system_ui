@@ -55,8 +55,9 @@
 </div> 
 </template>
 <script>
-  import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
+import RestAdapter from '@/restAdapter/index'
+import { validationMixin } from 'vuelidate'
+import { required, maxLength, email } from 'vuelidate/lib/validators'
 
   export default {
     mixins: [validationMixin],
@@ -125,6 +126,13 @@
         this.select = null
         this.checkbox = false
       },
+      async submitTopUP(){
+        try{
+          const Response = await RestAdapter.post(`/api/v1/account/payment`, this.items)
+        }catch(error){
+          console.error();
+        }
+      }
     },
   }
 </script>

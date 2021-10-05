@@ -82,6 +82,7 @@
   
 </template>
 <script>
+import RestAdapter from '@/restAdapter/index'
   export default {
     data: () => ({
       valid: false,
@@ -89,6 +90,15 @@
       lastname: '',
       email: '',
     }),
+    methods: {
+        async getInspectecDetails(id){
+            try{
+                const Response = await RestAdapter.get(`/api/v1/passenger/journey/${id}`)
+            }catch(error){
+                console.error();
+            }   
+        }
+    }
   }
 </script>
 <style>

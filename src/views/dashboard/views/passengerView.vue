@@ -120,10 +120,11 @@
 <script>
  import { mdiEye, mdiMapMarker, mdiShare } from '@mdi/js'
  import GoogleMap from '@/components/GoogleMap.vue'
+ import RestAdapter from '@/restAdapter/index'
   export default {
-      components:{
-          GoogleMap
-      },
+    components:{
+        GoogleMap
+    },
     data: () => ({
     icons: {
         mdiEye,
@@ -136,6 +137,23 @@
       lastname: '',
       email: '',
     }),
+    methods:{
+        async getPassengerDetails(id){
+            try{
+                const Response = await RestAdapter.get(`/api/v1/passenger/journeyHistory/${id}`)
+                const passenger = Response.data.data.map((x)=>({
+                    id: x.id,
+                    ticketNo: x.ticket_no,
+                    date: x.date,
+                    departure: x.departure,
+                    fair: x.fair,
+                    fines: x.fines,
+                }))
+            }catch(erro){
+                console.error();
+            }
+        }
+    }
   }
 </script>
 <style>

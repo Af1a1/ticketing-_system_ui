@@ -3,7 +3,7 @@
     <v-card-title style="color:white !important;">
     My Journey Details
     <v-spacer></v-spacer>
-    <v-btn depressed class="mt-2">
+    <v-btn depressed class="mt-2" @click="generateReport()">
       Generate Report
     </v-btn>
     </v-card-title>
@@ -20,12 +20,12 @@
   
 </template>
 <script>
+import RestAdapter from '@/restAdapter/index'
   export default {
     data () {
       return {
         headers: [
           {
-            text: 'Dessert (100g serving)',
             align: 'start',
             sortable: false,
             value: 'name',
@@ -40,7 +40,6 @@
         ],
         desserts: [
           {
-            name: 'Frozen Yogurt',
             calories: 159,
             fat: 6.0,
             carbs: 24,
@@ -48,7 +47,6 @@
             iron: '1%',
           },
           {
-            name: 'Ice cream sandwich',
             calories: 237,
             fat: 9.0,
             carbs: 37,
@@ -56,7 +54,6 @@
             iron: '1%',
           },
           {
-            name: 'Eclair',
             calories: 262,
             fat: 16.0,
             carbs: 23,
@@ -64,7 +61,6 @@
             iron: '7%',
           },
           {
-            name: 'Cupcake',
             calories: 305,
             fat: 3.7,
             carbs: 67,
@@ -72,7 +68,6 @@
             iron: '8%',
           },
           {
-            name: 'Gingerbread',
             calories: 356,
             fat: 16.0,
             carbs: 49,
@@ -80,7 +75,6 @@
             iron: '16%',
           },
           {
-            name: 'Jelly bean',
             calories: 375,
             fat: 0.0,
             carbs: 94,
@@ -88,7 +82,6 @@
             iron: '0%',
           },
           {
-            name: 'Lollipop',
             calories: 392,
             fat: 0.2,
             carbs: 98,
@@ -96,7 +89,6 @@
             iron: '2%',
           },
           {
-            name: 'Honeycomb',
             calories: 408,
             fat: 3.2,
             carbs: 87,
@@ -104,7 +96,6 @@
             iron: '45%',
           },
           {
-            name: 'Donut',
             calories: 452,
             fat: 25.0,
             carbs: 51,
@@ -112,7 +103,6 @@
             iron: '22%',
           },
           {
-            name: 'KitKat',
             calories: 518,
             fat: 26.0,
             carbs: 65,
@@ -120,10 +110,28 @@
             iron: '6%',
           },
         ],
+        journey:{}
       }
     },
     methods:{
-      
+      async getJourney(id){
+        try{
+            const Response = await RestAdapter.get(`/api/v1/journey/${id}`)
+            this.journey = Response.data.data.map((x)=>({
+              id: x.id,
+              date: x.date,
+              departure: x.departure,
+              destination: x.destination,
+              fair: x.fair,
+              fines: x.fines,
+          }))
+          }catch(error){
+            console.error();
+          }
+      },
+      generateReport(){
+        console.log('test')
+      }
     }
   }
 </script>
