@@ -16,27 +16,30 @@ export default {
   },
   post(route: string, payload: any) {
     const url = 'http://localhost:5000' + route;
-    const options = {
-      headers: { Authorization: auth.getAuthToken() },
-    };
+    // const options = {
+    //   headers: { Authorization: auth.getAuthToken() },
+    // };
 
-    return axios.post(url, payload, options);
+    //return axios.post(url, payload, options);
+    return axios.post(url, payload);
   },
   put(route: string, payload: any) {
     const url = 'http://localhost:5000' + route;
-    const options = {
-      headers: { Authorization: auth.getAuthToken() },
-    };
+    // const options = {
+    //   headers: { Authorization: auth.getAuthToken() },
+    // };
 
-    return axios.put(url, payload, options);
+    //return axios.put(url, payload, options);
+    return axios.put(url, payload);
   },
   delete(route: string, payload: any) {
     const url = 'http://localhost:5000' + route;
-    const options = {
-      headers: { Authorization: auth.getAuthToken() },
-      data: payload,
-    };
+    // const options = {
+    //   headers: { Authorization: auth.getAuthToken() },
+    //   data: payload,
+    // };
 
-    return axios.delete(url, options);
+    // return axios.delete(url, options);
+    return axios.delete(url);
   },
 };

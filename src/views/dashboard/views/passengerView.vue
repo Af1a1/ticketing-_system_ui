@@ -1,5 +1,7 @@
 <template>
-    <div flat class="mt-5">
+    <div>
+        <Navbar />
+        <div flat class="mt-5">
         <v-card-text class="custom-card-text" style="color:white !important;">
             <v-card-title class="text-h5">
                 Passenger Journey Details View 
@@ -114,15 +116,17 @@
             </v-row>
         </v-card-text>
         
-    </div>    
-  
+        </div> 
+    </div>
 </template>
 <script>
  import { mdiEye, mdiMapMarker, mdiShare } from '@mdi/js'
  import GoogleMap from '@/components/GoogleMap.vue'
  import RestAdapter from '@/restAdapter/index'
+ import Navbar from '@/components/Navbar.vue'
   export default {
     components:{
+        Navbar,
         GoogleMap
     },
     data: () => ({

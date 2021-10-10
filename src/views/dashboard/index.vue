@@ -1,6 +1,7 @@
 <template>
   <div
   >
+  <Navbar />
     <div
       background-color="transparent"
       color="basil"
@@ -43,7 +44,7 @@
 
     <v-tabs-items v-model="tabs">
         <!-- tab 1 -->
-      <v-tab-item>
+      <!-- <v-tab-item>
         <v-card flat>
           <v-card-title class="text-h5">
             Home
@@ -51,7 +52,7 @@
           <v-card-text>
           </v-card-text>
         </v-card>
-      </v-tab-item>
+      </v-tab-item> -->
       <!-- tab 2 -->
       <v-tab-item>
         <div flat>
@@ -69,7 +70,7 @@
         </div>
       </v-tab-item>
       <!-- tab 4 -->
-      <v-tab-item>
+      <!-- <v-tab-item>
         <v-card flat>
           <v-card-title class="text-h5">
             About Us
@@ -77,7 +78,7 @@
           <v-card-text>
           </v-card-text>
         </v-card>
-      </v-tab-item>
+      </v-tab-item> -->
     </v-tabs-items>
   </div>
 </template>
@@ -85,8 +86,10 @@
 import Home from './tabs/home.vue'
 import InspectorDetails from './tabs/inspectorDetails.vue'
 import PassengerDetails from './tabs/passengerDetails.vue'
+import Navbar from '@/components/Navbar.vue'
   export default {
     components:{
+        Navbar,
         InspectorDetails,
         PassengerDetails
     }, 
@@ -94,10 +97,10 @@ import PassengerDetails from './tabs/passengerDetails.vue'
       return {
         tabs: null,
         items: [
-          {tab: 'Home'},
+          //{tab: 'Home'},
           {tab: 'Inspector Details'},
           {tab: 'Passenger Details'},
-          {tab: 'About Us'},
+         // {tab: 'About Us'},
         ],
       }
     },

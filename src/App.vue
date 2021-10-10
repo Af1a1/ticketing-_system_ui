@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <Navbar />
+      <!-- <Navbar /> -->
       <router-view />
     </v-main>
   </v-app>
@@ -9,10 +9,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Navbar from '@/components/Navbar.vue'
 export default Vue.extend({
   components:{
-    Navbar
+  
   },
   name: 'App',
 
