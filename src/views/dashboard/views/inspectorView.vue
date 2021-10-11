@@ -15,8 +15,9 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="firstname"
+                        v-model="ticketNumber"
                         label="Ticket Number"
+                        readonly
                     ></v-text-field>
                     </v-col>
 
@@ -25,8 +26,9 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="lastname"
+                        v-model="passengerName"
                         label="Passenger Name"
+                        readonly
                     ></v-text-field>
                     </v-col>
                 </v-row>
@@ -36,9 +38,10 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="email"
+                        v-model="inspectorName"
                         label="Inpector Name"
                         required
+                        readonly
                     ></v-text-field>
                     </v-col>
                     <v-col
@@ -46,9 +49,10 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="email"
+                        v-model="inspectorLocation"
                         label="Inpector Location"
                         required
+                        readonly
                     ></v-text-field>
                     </v-col>
                 </v-row>
@@ -58,9 +62,10 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="email"
+                        v-model="dateTime"
                         label="Date and Time"
                         required
+                        readonly
                     ></v-text-field>
                     </v-col>
                     <v-col
@@ -68,9 +73,10 @@
                     md="5"
                     >
                     <v-text-field
-                        v-model="email"
+                        v-model="fineAmount"
                         label="Fine Amount"
                         required
+                        readonly
                     ></v-text-field>
                     </v-col>
                 </v-row>
@@ -83,27 +89,31 @@
     </div>
 </template>
 <script>
-import RestAdapter from '@/restAdapter/index'
 import Navbar from '@/components/Navbar.vue'
   export default {
-      components:{
-          Navbar
-      },
+    components:{
+    Navbar
+    },
+    // props:[
+    //     'id',
+    //     'passengerName',
+    //     'inspectorName',
+    //     'inspectorLocation',
+    //     'dateTime',
+    //     'fineAmount',
+    // ],
     data: () => ({
       valid: false,
-      firstname: '',
-      lastname: '',
-      email: '',
+      ticketNumber: '',
+      passengerName: '',
+      inspectorName: '',
+      inspectorLocation: '',
+      dateTime: '',
+      fineAmount: ''
     }),
-    methods: {
-        async getInspectecDetails(id){
-            try{
-                const Response = await RestAdapter.get(`/api/v1/passenger/journey/${id}`)
-            }catch(error){
-                console.error();
-            }   
-        }
-    }
+    // mounted() {
+        
+    // },
   }
 </script>
 <style>

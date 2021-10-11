@@ -30,11 +30,13 @@ const routes: Array<RouteConfig> = [
     path: '/dashboard/:id/inpector',
     name: 'dashboard',
     component: InspectorView,
+    props: true
   },
   {
     path: '/dashboard/:id/passenger',
-    name: 'dashboard',
+    name: 'passenger-detail',
     component: PassengerView,
+    props: true
   },
   {
     path: '/user',

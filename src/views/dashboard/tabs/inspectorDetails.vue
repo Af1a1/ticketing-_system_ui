@@ -15,6 +15,7 @@
     :headers="headers"
     :items="desserts"
     :items-per-page="5"
+    :search="search"
     class="elevation-1"
   >
     <template v-slot:item.action>
@@ -120,6 +121,7 @@ import RestAdapter from '@/restAdapter/index'
             // action:'',
           },
         ],
+        inspectors:[]
       }
     },
     methods:{
@@ -130,7 +132,7 @@ import RestAdapter from '@/restAdapter/index'
         try{
           const Response = await RestAdapter.get('/api/v1/inspector')
           console.log("🚀 ~ file: inspectorDetails.vue ~ line 141 ~ getAllInspectorDetails ~ Response", Response)
-          const inspector = Response.data.data.map((x)=>({
+          const dataArray = Response.data.data.map((x)=>({
             id: x.id,
             date: x.date,
             departure: x.departure,
@@ -138,13 +140,14 @@ import RestAdapter from '@/restAdapter/index'
             fair: x.fair,
             fines: x.fines,
           }))
+          this.inspectors = dataArray
         }catch(error){
           console.error();
         }
       }
     },
     mounted() {
-      this.getAllInspectorDetails()
+      //this.getAllInspectorDetails()
     },
   }
 </script>

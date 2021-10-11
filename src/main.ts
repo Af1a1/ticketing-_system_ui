@@ -17,7 +17,7 @@ Vue.config.productionTip = false;
 Vue.use(VueGoogleMaps, {
   load: {
     //key: `${process.env.MAP_KEY}`,
-    key: `${process.env.MAP_KEY}`,
+    key: process.env.MAP_KEY,
     libraries: 'Sri Lanka',
   }
 });

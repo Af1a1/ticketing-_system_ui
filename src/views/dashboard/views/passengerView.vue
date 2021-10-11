@@ -18,8 +18,9 @@
                                 md="12"
                                 >
                                 <v-text-field
-                                    v-model="firstname"
+                                    v-model="ticketNumber"
                                     label="Ticket Number"
+                                    readonly
                                 ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -29,9 +30,10 @@
                                 md="12"
                                 >
                                 <v-text-field
-                                    v-model="email"
+                                    v-model="dateInp"
                                     label="Date and Time"
                                     required
+                                    readonly
                                 ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -41,9 +43,10 @@
                                 md="6"
                                 >
                                 <v-text-field
-                                    v-model="email"
+                                    v-model="departure"
                                     label="Departure"
                                     required
+                                    readonly
                                 ></v-text-field>
                                 </v-col>
                                 <v-col
@@ -51,9 +54,10 @@
                                 md="6"
                                 >
                                 <v-text-field
-                                    v-model="email"
+                                    v-model="destination"
                                     label="Destination"
                                     required
+                                    readonly
                                 ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -63,9 +67,10 @@
                                 md="6"
                                 >
                                 <v-text-field
-                                    v-model="email"
+                                    v-model="fairInp"
                                     label="Jouney Fair"
                                     required
+                                    readonly
                                 ></v-text-field>
                                 </v-col>
                                 <v-col
@@ -73,7 +78,7 @@
                                 md="6"
                                 >
                                 <v-text-field
-                                    v-model="email"
+                                    v-model="fineInp"
                                     label="Fines"
                                     required
                                 ></v-text-field>
@@ -122,13 +127,22 @@
 <script>
  import { mdiEye, mdiMapMarker, mdiShare } from '@mdi/js'
  import GoogleMap from '@/components/GoogleMap.vue'
- import RestAdapter from '@/restAdapter/index'
  import Navbar from '@/components/Navbar.vue'
   export default {
     components:{
         Navbar,
         GoogleMap
     },
+    props:[
+        'id',
+        'date',
+        'depLat',
+        'depLong',
+        'desLat',
+        'desLong',
+        'fare',
+        'fine'
+    ],
     data: () => ({
     icons: {
         mdiEye,
@@ -137,27 +151,23 @@
       },
       center: {lat: 51.093048, lng: 6.842120},
       valid: false,
-      firstname: '',
-      lastname: '',
-      email: '',
+      ticketNumber: '',
+      dateInp:'',
+      departure:'',
+      destination:'',
+      fairInp: '',
+      fineInp: ''
     }),
     methods:{
-        async getPassengerDetails(id){
-            try{
-                const Response = await RestAdapter.get(`/api/v1/passenger/journeyHistory/${id}`)
-                const passenger = Response.data.data.map((x)=>({
-                    id: x.id,
-                    ticketNo: x.ticket_no,
-                    date: x.date,
-                    departure: x.departure,
-                    fair: x.fair,
-                    fines: x.fines,
-                }))
-            }catch(erro){
-                console.error();
-            }
-        }
-    }
+    },
+    mounted() {
+        this.ticketNumber = this.id,
+        this.dateInp = this.date,
+        this.departure = this.depLat + this.depLong,
+        this.destination = this.desLat + this.desLong,
+        this.fairInp = this.fare,
+        this.fineInp = this.fine
+    },
   }
 </script>
 <style>
