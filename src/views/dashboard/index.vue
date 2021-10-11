@@ -98,7 +98,7 @@ import Navbar from '@/components/Navbar.vue'
         tabs: null,
         items: [
           //{tab: 'Home'},
-          {tab: 'Inspector Details'},
+          {tab: 'Inspection Details'},
           {tab: 'Passenger Details'},
          // {tab: 'About Us'},
         ],

@@ -36,8 +36,8 @@ import RestAdapter from '@/restAdapter/index'
           },
           { text: 'Ticket No', value: 'id' },
           { text: 'Date and Time', value: 'date' },
-          { text: 'Departure', value: 'carbs' },
-          { text: 'Destination', value: 'protein' },
+          { text: 'Departure', value: 'departure' },
+          { text: 'Destination', value: 'destination' },
           { text: 'Journey Fair', value: 'fare' },
           { text: 'Fines', value: 'fine' },
           { text: '', value: 'action' },
@@ -52,16 +52,20 @@ import RestAdapter from '@/restAdapter/index'
       async getAllPassengerDetails(){
         try{
           const Response = await RestAdapter.get('/api/v1/passenger/getAllJourneyDetails')
-          const dataArray = Response.data.data.body.map((x)=>({
+          // console.log("🚀 ~ file: passengerDetails.vue ~ line 55 ~ getAllPassengerDetails ~ Response", Response)
+          const dataArray = Response.data.data.passengerHistory.map((x)=>({
               id: x.accountId,
-              date: x.Date,
-              depLat: x.depatureLocation.lat,
-              depLong: x.depatureLocation.long,
-              desLat: x.destinationLocation.lat,
-              desLong: x.destinationLocation.long,
-              fare: x.fare ? x.fare : 'N/A',
-              fine: x.fine ? x.fine : 'N/A',
+              date: x.createdAt,
+              depLat: x.depatureLat,
+              depLong: x.depatureLong,
+              destination: 'Maradana',
+              departure: 'Gampaha',
+              desLat: x.destinationLat,
+              desLong: x.destinationLong,
+              fare: x.fare ? x.fare.amount : 'N/A',
+              fine: x.fine ? x.fine.amount : 'N/A',
           }))
+          console.log("🚀 ~ file: passengerDetails.vue ~ line 66 ~ dataArray ~ dataArray", dataArray)
           this.passengers = dataArray
         }catch(error){
           console.error();

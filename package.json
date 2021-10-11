@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.3",
+    "@googlemaps/js-api-loader": "^1.12.5",
     "@mdi/font": "^6.2.95",
     "@mdi/js": "^6.2.95",
     "@vee-validate/rules": "^4.5.2",

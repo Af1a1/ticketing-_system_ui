@@ -163,8 +163,8 @@
     mounted() {
         this.ticketNumber = this.id,
         this.dateInp = this.date,
-        this.departure = this.depLat + this.depLong,
-        this.destination = this.desLat + this.desLong,
+        this.departure = 'Gampaha'
+        this.destination = "Maradan",
         this.fairInp = this.fare,
         this.fineInp = this.fine
     },

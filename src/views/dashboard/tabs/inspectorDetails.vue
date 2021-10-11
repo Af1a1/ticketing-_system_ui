@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-card-title style="color:white !important;">
-      Inspector Inspection Details
+      Inspection Details
       <v-spacer></v-spacer>
       <v-text-field 
         v-model="search"
@@ -13,14 +13,14 @@
     </v-card-title>
     <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="inspectors"
     :items-per-page="5"
     :search="search"
     class="elevation-1"
   >
-    <template v-slot:item.action>
+    <template v-slot:item.action="{item}">
         <v-btn
-        @click="pushView"
+        @click="pushView(item.id)"
         >View</v-btn>
     </template>
   </v-data-table>
@@ -40,106 +40,34 @@ import RestAdapter from '@/restAdapter/index'
             sortable: false,
             value: 'name',
           },
-          { text: 'Ticket Number', value: 'calories' },
-          { text: 'Passenger Name', value: 'fat' },
-          { text: 'Inspect Location', value: 'carbs' },
-          { text: 'Inspector Name', value: 'protein' },
-          { text: 'Date Time', value: 'iron' },
+          { text: 'Date', value: 'date' },
+          { text: 'Inspect Location', value: 'location' },
+          { text: 'Inspector Name', value: 'inspectorName' },
+          { text: 'Bus Id', value: 'bus' },
+          { text: 'Route Id', value: 'route' },
           { text: '', value: 'action' },
         ],
-        desserts: [
-          {
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-            //action:'',
-          },
-          {
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-            //action:'',
-          },
-          {
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-            // action:'',
-          },
-          {
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-            //action:'',
-          },
-          {
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-            //action:'',
-          },
-          {
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-            //action:'',
-          },
-          {
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-            //action:'',
-          },
-          {
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-            // action:'',
-          },
-          {
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-            // action:'',
-          },
-        ],
+        
         inspectors:[]
       }
     },
     methods:{
-      pushView(){
-        this.$router.push(`/dashboard/${1}/inpector`)
+      pushView(id){
+        this.$router.push(`/dashboard/${id}/inpector`)
       },
-      async getAllInspectorDetails(){
+      async getAllInspectionDetails(){
         try{
-          const Response = await RestAdapter.get('/api/v1/inspector')
+          const Response = await RestAdapter.get('/api/v1/inspection')
           console.log("🚀 ~ file: inspectorDetails.vue ~ line 141 ~ getAllInspectorDetails ~ Response", Response)
-          const dataArray = Response.data.data.map((x)=>({
+          const dataArray = Response.data.data.inspection.map((x)=>({
             id: x.id,
-            date: x.date,
-            departure: x.departure,
-            destination: x.destination,
-            fair: x.fair,
-            fines: x.fines,
+            location: x.inspectionLat + x.inspectionLong,
+            date: x.createdAt,
+            inspectorName: x.inspector.name,
+            bus: x.journey.busId,
+            route: x.journey.routeId
           }))
+          console.log("🚀 ~ file: inspectorDetails.vue ~ line 143 ~ dataArray ~ dataArray", dataArray)
           this.inspectors = dataArray
         }catch(error){
           console.error();
@@ -147,7 +75,7 @@ import RestAdapter from '@/restAdapter/index'
       }
     },
     mounted() {
-      //this.getAllInspectorDetails()
+      this.getAllInspectionDetails()
     },
   }
 </script>
